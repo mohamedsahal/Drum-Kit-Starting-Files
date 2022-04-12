@@ -4,13 +4,15 @@ for (i=0; i<btn; i++){
     
       var text = this.innerHTML;
       makeSound(text);
+      animation(text);
       
 
     });
 }
 
-document.addEventListener("keydown", function(event){
+document.addEventListener("keypress", function(event){
   makeSound(event.key);
+  animation(event.key);
 })
 
 function makeSound (key){
@@ -50,7 +52,16 @@ break;
           break;
   }
 
-};
+}
 
 
-  
+function animation(currentKey){
+  var active = document.querySelector("." + currentKey)
+  active.classList.add("pressed");
+
+  setInterval(function() {
+    active.classList.remove("pressed");
+    
+  }, 100);
+
+}
